@@ -29,31 +29,25 @@
 		<h1>Organigramme de l'équipe</h1>
 		<p>
 			{% for user in message  %}
-
-				{% switch user.sup_hierarchique %}
-					{% case '' %}
-						<h2>
-							{{ user.firstname}}
+{% if user.supHierarchique == 'Paul Stone'%} 
+					{{user.supHierarchique}}
+					
+						<p>Le supérieur est Paul Stone</p>
+							 {{	 user.firstname }}
 							&nbsp;
 							{{ user.lastname}}
-							&nbsp;
-						</h2><br>
-					{% case 'Paul Stone' %}
-						<p>value is "value2"</p>
-					{% case 'value3' %}
-					{% case 'value4' %}
-						<p>value is "value3" or "value4"</p>
-					{% default %}
-						<p>value is something else</p>
-				{% endswitch %}
+							&nbsp; 
+					<br>
+					 {% elseif user.supHierarchique =='Paul Martin' %} 
+						{{user.supHierarchique}}
+					
+						<p>Le supérieur est Paul Martin</p>		<br>
 
-				<h2>
-					{{ user.firstname}}
-					&nbsp;
-					{{ user.lastname}}
-					&nbsp;
-				</h2>
-
+						 {% else %} 
+							 {{user.supHierarchique}} 
+					
+						<p>Le supérieur est Justine Dupont</p>		<br> 
+				{% endif %}  
 
 			{% endfor %}
 
