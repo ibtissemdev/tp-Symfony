@@ -29,13 +29,14 @@
 		<h1>Organigramme de l'équipe</h1>
 		<p>
 
-			{% for user in label  %}
-
-
-
-{% for membre in users  %}
-{{user.label}}
-{{membre.firstname}}
+			{% for user in users  %}
+{{user.firstname}}
+{{user.id}}
+	{% endfor %}
+<br>
+{% for position in positions  %}
+{{position.label}}
+{{position.id}}
 {# {% if user.supHierarchique == 'Paul Stone'%} 
 					{{user.supHierarchique}}
 					
@@ -55,7 +56,7 @@
 					
 						<p>Le supérieur est Justine Dupont</p>		<br> 
 				{% endif %}   #}
-	{% endfor %}
+
 			{% endfor %}
 
 

@@ -28,8 +28,8 @@ class TeamController extends AbstractController
     public function organigramme()
     {
 
-            $repository = $this->getDoctrine()->getRepository(Team::class); //Récupérer une collection d'objets
-            $position = $this->getDoctrine()->getRepository(Position::class);
+            $users = $this->getDoctrine()->getRepository(Team::class)->findAll();; //Récupérer une collection d'objets
+            $positions = $this->getDoctrine()->getRepository(Position::class)->findAll();
     
             // $user['findOneBy'] = $repository->findOneBy(['nom' => 'Albert']); // Rechercher un seul produit par son nom
           
@@ -38,9 +38,7 @@ class TeamController extends AbstractController
     
             // $users['findBy'] =  $repository->findBy( ['nom' => 'Iguane'],
             // ['age' => 'ASC'],6,0);
-    
-           $users= $repository->findAll();
-           $label= $position->findAll();
+
 
 //var_dump($label);
            //error_log(print_r($message,1));
@@ -52,8 +50,8 @@ class TeamController extends AbstractController
 
         // }
     
-        return $this->render('team/organigramme.html.twig',  ['label'
-    =>$label, 'users'=>$users]); //Envoie la vue sur la page twig
+        return $this->render('team/organigramme.html.twig',  ['positions'
+    =>$positions, 'users'=>$users]); //Envoie la vue sur la page twig
       
     }
 

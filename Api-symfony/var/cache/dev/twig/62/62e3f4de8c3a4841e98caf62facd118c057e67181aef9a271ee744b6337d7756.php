@@ -94,38 +94,43 @@ class __TwigTemplate_c62f1a1965f83f08257dd7f6e7f58df6ebf4ce50f02bd7aeaf5bd7c1825
 \t\t\t";
         // line 32
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["label"]) || array_key_exists("label", $context) ? $context["label"] : (function () { throw new RuntimeError('Variable "label" does not exist.', 32, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["users"]) || array_key_exists("users", $context) ? $context["users"] : (function () { throw new RuntimeError('Variable "users" does not exist.', 32, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["user"]) {
             // line 33
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "firstname", [], "any", false, false, false, 33), "html", null, true);
             echo "
-
-
 ";
-            // line 36
-            $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["users"]) || array_key_exists("users", $context) ? $context["users"] : (function () { throw new RuntimeError('Variable "users" does not exist.', 36, $this->source); })()));
-            foreach ($context['_seq'] as $context["_key"] => $context["membre"]) {
-                // line 37
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "label", [], "any", false, false, false, 37), "html", null, true);
-                echo "
-";
-                // line 38
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["membre"], "firstname", [], "any", false, false, false, 38), "html", null, true);
-                echo "
-";
-                // line 58
-                echo "\t";
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['membre'], $context['_parent'], $context['loop']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 59
-            echo "\t\t\t";
+            // line 34
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 34), "html", null, true);
+            echo "
+\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['user'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 60
+        // line 36
+        echo "<br>
+";
+        // line 37
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["positions"]) || array_key_exists("positions", $context) ? $context["positions"] : (function () { throw new RuntimeError('Variable "positions" does not exist.', 37, $this->source); })()));
+        foreach ($context['_seq'] as $context["_key"] => $context["position"]) {
+            // line 38
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["position"], "label", [], "any", false, false, false, 38), "html", null, true);
+            echo "
+";
+            // line 39
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["position"], "id", [], "any", false, false, false, 39), "html", null, true);
+            echo "
+";
+            // line 59
+            echo "
+\t\t\t";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['position'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 61
         echo "
 
 
@@ -151,7 +156,7 @@ class __TwigTemplate_c62f1a1965f83f08257dd7f6e7f58df6ebf4ce50f02bd7aeaf5bd7c1825
 
     public function getDebugInfo()
     {
-        return array (  129 => 60,  123 => 59,  117 => 58,  113 => 38,  109 => 37,  105 => 36,  100 => 33,  96 => 32,  91 => 29,  74 => 7,  67 => 6,  53 => 3,  36 => 1,);
+        return array (  134 => 61,  127 => 59,  123 => 39,  119 => 38,  115 => 37,  112 => 36,  104 => 34,  100 => 33,  96 => 32,  91 => 29,  74 => 7,  67 => 6,  53 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -187,13 +192,14 @@ class __TwigTemplate_c62f1a1965f83f08257dd7f6e7f58df6ebf4ce50f02bd7aeaf5bd7c1825
 \t\t<h1>Organigramme de l'équipe</h1>
 \t\t<p>
 
-\t\t\t{% for user in label  %}
-
-
-
-{% for membre in users  %}
-{{user.label}}
-{{membre.firstname}}
+\t\t\t{% for user in users  %}
+{{user.firstname}}
+{{user.id}}
+\t{% endfor %}
+<br>
+{% for position in positions  %}
+{{position.label}}
+{{position.id}}
 {# {% if user.supHierarchique == 'Paul Stone'%} 
 \t\t\t\t\t{{user.supHierarchique}}
 \t\t\t\t\t
@@ -213,7 +219,7 @@ class __TwigTemplate_c62f1a1965f83f08257dd7f6e7f58df6ebf4ce50f02bd7aeaf5bd7c1825
 \t\t\t\t\t
 \t\t\t\t\t\t<p>Le supérieur est Justine Dupont</p>\t\t<br> 
 \t\t\t\t{% endif %}   #}
-\t{% endfor %}
+
 \t\t\t{% endfor %}
 
 
