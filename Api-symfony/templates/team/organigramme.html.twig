@@ -28,8 +28,15 @@
 								    </ul> #}
 		<h1>Organigramme de l'équipe</h1>
 		<p>
-			{% for user in message  %}
-{% if user.supHierarchique == 'Paul Stone'%} 
+
+			{% for user in label  %}
+
+
+
+{% for membre in users  %}
+{{user.label}}
+{{membre.firstname}}
+{# {% if user.supHierarchique == 'Paul Stone'%} 
 					{{user.supHierarchique}}
 					
 						<p>Le supérieur est Paul Stone</p>
@@ -47,9 +54,11 @@
 							 {{user.supHierarchique}} 
 					
 						<p>Le supérieur est Justine Dupont</p>		<br> 
-				{% endif %}  
-
+				{% endif %}   #}
+	{% endfor %}
 			{% endfor %}
+
+
 
 
 		</p>
