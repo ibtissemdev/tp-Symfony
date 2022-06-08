@@ -1,5 +1,6 @@
 <?Php namespace App\Controller;
 
+use App\Entity\Position;
 use App\Repository\TeamRepository;
 use App\Entity\Team;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,7 +17,7 @@ class TeamController extends AbstractController
     public function index(): Response
     {
         return $this->render('default/index.html.twig', [
-            'message' => 'Voici mon api en symfony',
+            'users' => 'Voici mon api en symfony',
         ]);
     }
 
@@ -28,22 +29,31 @@ class TeamController extends AbstractController
     {
 
             $repository = $this->getDoctrine()->getRepository(Team::class); //Récupérer une collection d'objets
+            $position = $this->getDoctrine()->getRepository(Position::class);
     
             // $user['findOneBy'] = $repository->findOneBy(['nom' => 'Albert']); // Rechercher un seul produit par son nom
           
     
-            // $user['find'] = $repository->find(1);
+         //$users['find'] = $repository->find(1);
     
-            // $user['findBy'] =  $repository->findBy( ['nom' => 'Iguane'],
+            // $users['findBy'] =  $repository->findBy( ['nom' => 'Iguane'],
             // ['age' => 'ASC'],6,0);
     
-           $message= $repository->findAll();
-//var_dump($message);
+           $users= $repository->findAll();
+           $label= $position->findAll();
+
+//var_dump($label);
            //error_log(print_r($message,1));
     
         // echo '<pre>',print_r($message,1),'</pre>';
+
+        // foreach($label as $position) {
+         
+
+        // }
     
-        return $this->render('team/organigramme.html.twig',  compact('message')); //Envoie la vue sur la page twig
+        return $this->render('team/organigramme.html.twig',  ['label'
+    =>$label, 'users'=>$users]); //Envoie la vue sur la page twig
       
     }
 
