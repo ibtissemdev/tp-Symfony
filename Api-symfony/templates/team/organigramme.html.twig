@@ -17,52 +17,29 @@
 		}
 	</style>
 
-	<div
-		class="example-wrapper">
-		{# <h1>Hello {{ controller_name }}! ✅</h1>
-								
-								    This friendly message is coming from:
-								    <ul>
-								        <li>Your controller at <code><a href="{{ 'C:/laragon/www/tp-Symfony/Api-symfony/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
-								        <li>Your template at <code><a href="{{ 'C:/laragon/www/tp-Symfony/Api-symfony/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
-								    </ul> #}
+	<div class="example-wrapper">
+
 		<h1>Organigramme de l'équipe</h1>
 		<p>
 
 			{% for user in users  %}
-{{user.firstname}}
-{{user.id}}
-	{% endfor %}
-<br>
-{% for position in positions  %}
-{{position.label}}
-{{position.id}}
-{# {% if user.supHierarchique == 'Paul Stone'%} 
-					{{user.supHierarchique}}
-					
-						<p>Le supérieur est Paul Stone</p>
-							 {{	 user.firstname }}
-							&nbsp;
-							{{ user.lastname}}
-							&nbsp; 
-					<br>
-					 {% elseif user.supHierarchique =='Paul Martin' %} 
-						{{user.supHierarchique}}
-					
-						<p>Le supérieur est Paul Martin</p>		<br>
+				{% for place in hierarchie %}
+				{# On compte le nombre de supérieur hiérarchique avec loop.index dans la boucle en cours #}
+				{% set i = loop.index %}	
+		
+					 {% if user.supHierarchique ==   place %} 	
+					 {# On fait une boucle for i pour auto incrémenter les &nbsp;  #}
+					{% for j in 1.. i %}
+					&nbsp;	&nbsp;	
+					{% endfor %} 
 
-						 {% else %} 
-							 {{user.supHierarchique}} 
-					
-						<p>Le supérieur est Justine Dupont</p>		<br> 
-				{% endif %}   #}
+				{{user.id}} {{user.firstname}} {{user.lastname}} ({{user.label}}) <br>
 
+						{% endif %} 
+				{% endfor %}
+					
 			{% endfor %}
 
-
-
-
 		</p>
-
 	</div>
 {% endblock %}
