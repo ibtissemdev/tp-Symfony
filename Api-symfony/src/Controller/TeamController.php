@@ -32,9 +32,10 @@ class TeamController extends AbstractController
 
         $users = $this->getDoctrine()->getRepository(Team::class)->findAll();; //Récupérer une collection d'objets
         $positions = $this->getDoctrine()->getRepository(Position::class)->findAll();
-
+        // echo '<pre>';
+        // var_dump( $users);
+        // echo '</pre>';
         $equipe = [];
-
 
         foreach ($users as $aUser) {
             $aTeam = [];
@@ -53,36 +54,38 @@ class TeamController extends AbstractController
             }
             $equipe[] = $aTeam;
         }
+        // echo '<pre>';
+        // var_dump($equipe);
+        // echo '</pre>';
 
         foreach($equipe as $table) {
-$newTable[]=$table['supHierarchique'];   }
-var_dump($newTable); echo '<br>';
+        $newTable[]=$table['supHierarchique'];   }
+        //var_dump($newTable); echo '<br>';
 
 
         $hierarchie=array_unique($newTable);
         $hierarchie=array_values($hierarchie);
 
-var_dump( $hierarchie);   echo '<br>';
-        // $user['findOneBy'] = $repository->findOneBy(['nom' => 'Albert']); // Rechercher un seul produit par son nom
+        var_dump( $hierarchie);   echo '<br>';
 
-        //$users['find'] = $repository->find(1);
+            $users=$equipe;
+            $teamOrdonnee = [];
+        foreach ( $hierarchie as $newHierarchie) {
+            foreach ( $users as $newUsers) {
+                if($newUsers['supHierarchique']==$newHierarchie){
+                    $teamOrdonnee[$newHierarchie][]= $newUsers;
+                }
+            }
+        }
 
-        // $users['findBy'] =  $repository->findBy( ['nom' => 'Iguane'],
-        // ['age' => 'ASC'],6,0);
+        // $teamOrdonnee = array_reverse($teamOrdonnee);
+            echo '<pre>';
+                var_dump($teamOrdonnee[""][0]["firstname"]);
+                echo '</pre>';
 
 
-        //var_dump($label);
-        //error_log(print_r($message,1));
-
-        // echo '<pre>',print_r($message,1),'</pre>';
-
-        // foreach($label as $position) {
-
-
-        // }
-
-        return $this->render('team/organigramme.html.twig',  ['positions'
-        => $positions, 'users' => $equipe, 'hierarchie'=> $hierarchie]); //Envoie la vue sur la page twig
+        return $this->render('team/organigramme.html.twig', compact('positions','hierarchie','users','teamOrdonnee') ) ;
+      //  ['positions'=> $positions, 'users' => $equipe, 'hierarchie'=> $hierarchie]); //Envoie la vue sur la page twig
 
     }
 }
