@@ -47,7 +47,7 @@ class TeamController extends AbstractController
             $aTeam['position'] = $aUser->getPositions();
 
             foreach ($aTeam['position'] as $aLabel) {
-                if ($aTeam['id']=$aLabel->getId()) {
+                if ($aTeam['id'] = $aLabel->getId()) {
 
                     $aTeam['label'] = $aLabel->getLabel();
                 }
@@ -58,34 +58,139 @@ class TeamController extends AbstractController
         // var_dump($equipe);
         // echo '</pre>';
 
-        foreach($equipe as $table) {
-        $newTable[]=$table['supHierarchique'];   }
+        foreach ($equipe as $table) {
+            $newTable[] = $table['supHierarchique'];
+        }
         //var_dump($newTable); echo '<br>';
 
 
-        $hierarchie=array_unique($newTable);
-        $hierarchie=array_values($hierarchie);
+        $hierarchie = array_unique($newTable);
+        $hierarchie = array_values($hierarchie);
 
-        var_dump( $hierarchie);   echo '<br>';
-
-            $users=$equipe;
-            $teamOrdonnee = [];
-        foreach ( $hierarchie as $newHierarchie) {
-            foreach ( $users as $newUsers) {
-                if($newUsers['supHierarchique']==$newHierarchie){
-                    $teamOrdonnee[$newHierarchie][]= $newUsers;
+        var_dump($hierarchie);
+        echo '<br>';
+        // $i=0;
+        $users = $equipe;
+        $teamOrdonnee = [];
+        foreach ($hierarchie as $newHierarchie) {
+            foreach ($users as $newUsers) {
+                if ($newUsers['supHierarchique'] == $newHierarchie) {
+                    $teamOrdonnee[$newHierarchie][] = $newUsers['lastname'] . " " . $newUsers['firstname'];
+                    //    var_dump( $newUsers['supHierarchique']);
+                    //    var_dump( $newUsers['lastname']);
                 }
+                //  var_dump($teamOrdonnee[$newHierarchie]);
             }
+            // $i++;
         }
 
+
+        echo '<pre>';
+        foreach ($teamOrdonnee as $team) {
+
+            foreach ($team as $members) {
+
+                // var_dump($members["firstname"]);
+
+            }
+        }
+        echo '</pre>';
+
         // $teamOrdonnee = array_reverse($teamOrdonnee);
-            echo '<pre>';
-                var_dump($teamOrdonnee[""][0]["firstname"]);
-                echo '</pre>';
+        // echo '<pre>';
+        //     var_dump($teamOrdonnee[3][0]["firstname"]);
+        //     echo '</pre>';
 
 
-        return $this->render('team/organigramme.html.twig', compact('positions','hierarchie','users','teamOrdonnee') ) ;
-      //  ['positions'=> $positions, 'users' => $equipe, 'hierarchie'=> $hierarchie]); //Envoie la vue sur la page twig
+        return $this->render('team/organigramme.html.twig', compact('positions', 'hierarchie', 'users', 'teamOrdonnee'));
+        //  ['positions'=> $positions, 'users' => $equipe, 'hierarchie'=> $hierarchie]); //Envoie la vue sur la page twig
 
+    }
+
+    /**
+     * @Route("/team/recursive", name="app_team_recursive")
+     */
+    public function recursive()
+    {
+        $element = ["A", "B", "C", "D", "E"];
+        $t = ["A" => null, "B" => "A", "C" => "A", "D" => "B", "E" => "B"];
+        // var_dump($t);
+
+
+        function hierarchie($t, $element, $croll, &$level)
+
+        {
+            if ($t[$croll] == null) {
+                $level[$croll] = 0;
+                return 0;
+            }
+
+            if (!isset($level[$element])) {
+                $level[$element] = 1;
+            } else {
+                $level[$element]++;
+            }
+            hierarchie($t, $element, $t[$croll], $level);
+        }
+        $level = [];
+
+        foreach ($t as $id => $data) {
+
+            hierarchie($t, $id, $id, $level);
+            var_dump($level);
+        }
+
+        $keys = array_keys($t);
+        $values = array_values($t);
+        $leaves = array_diff($keys, $values);
+
+        // var_dump($level);
+
+        function order($t, $leaves, $prf, $level, &$order)
+        {
+            //error_log("prf :" . $prf . " order : " . print_r($order, 1));
+            if ($prf == 0) {
+                error_log("--------------");
+                return;
+            }
+
+            foreach ($leaves as  $leaf) {
+
+                if ($level[$leaf] == $prf) {
+                    $order[] = [$leaf];
+                    error_log("ok");
+                }
+            }
+
+            error_log("prf :" . $prf . " order : " . print_r($order, 1));
+            foreach ($order as $id => $chaine) {
+                array_unshift($chaine, $t[$chaine[0]]);
+                $order[$id] = $chaine;
+                // error_log($order, $t[$order]);
+                // error_log(print_r(array_unshift($order, $t[$order[0]], 1)));
+            }
+
+            order($t, $leaves, $prf - 1, $level, $order);
+        }
+        $order = [];
+        order($t, $leaves, max($level), $level, $order);
+        var_dump($level);
+
+
+        error_log("order : " . print_r($order, 1));
+
+        $result = [];
+        foreach ($order as $ordre) {
+
+            $result = array_merge($result, $ordre);
+        }
+
+        $result = array_values(array_unique($result));
+
+        error_log(print_r($result, 1));
+
+        return $this->render('team/recursive.html.twig', [
+            'level' => $result,
+        ]);
     }
 }
