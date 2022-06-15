@@ -20,17 +20,25 @@
 	<div class="example-wrapper">
 
 		<h1>Fonction récursive</h1>
-		<p>{% for levels in level %}
-            
-            {{levels}}
-        {% endfor %}
-			
+		<p>
+			{% for resultat in result %}
+
+				{% for keys,value in level %}
+
+					{% if resultat == keys %}
+					{% for i in 0.. value %}
+					&nbsp;	&nbsp;	
+					{% endfor %} 
+					{{resultat}}<br>
+
+					{% endif %}
+					
+
+				{% endfor %}
+			{% endfor %}
 		</p>
+	</p>
+	<p></p>
 
-<p>
 
-</p>
-
-		
-	</div>
-{% endblock %}
+</div>{% endblock %}

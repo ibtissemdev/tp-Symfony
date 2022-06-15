@@ -87,33 +87,66 @@ class __TwigTemplate_12cf250b8100d47b798dba438346774823426c979dd44df926e52eb1f87
 \t<div class=\"example-wrapper\">
 
 \t\t<h1>Fonction récursive</h1>
-\t\t<p>";
-        // line 23
+\t\t<p>
+\t\t\t";
+        // line 24
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["level"]) || array_key_exists("level", $context) ? $context["level"] : (function () { throw new RuntimeError('Variable "level" does not exist.', 23, $this->source); })()));
-        foreach ($context['_seq'] as $context["_key"] => $context["levels"]) {
-            // line 24
-            echo "            
-            ";
+        $context['_seq'] = twig_ensure_traversable((isset($context["result"]) || array_key_exists("result", $context) ? $context["result"] : (function () { throw new RuntimeError('Variable "result" does not exist.', 24, $this->source); })()));
+        foreach ($context['_seq'] as $context["_key"] => $context["resultat"]) {
             // line 25
-            echo twig_escape_filter($this->env, $context["levels"], "html", null, true);
             echo "
-        ";
+\t\t\t\t";
+            // line 26
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["level"]) || array_key_exists("level", $context) ? $context["level"] : (function () { throw new RuntimeError('Variable "level" does not exist.', 26, $this->source); })()));
+            foreach ($context['_seq'] as $context["keys"] => $context["value"]) {
+                // line 27
+                echo "
+\t\t\t\t\t";
+                // line 28
+                if ((0 === twig_compare($context["resultat"], $context["keys"]))) {
+                    // line 29
+                    echo "\t\t\t\t\t";
+                    $context['_parent'] = $context;
+                    $context['_seq'] = twig_ensure_traversable(range(0, $context["value"]));
+                    foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
+                        // line 30
+                        echo "\t\t\t\t\t&nbsp;\t&nbsp;\t
+\t\t\t\t\t";
+                    }
+                    $_parent = $context['_parent'];
+                    unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
+                    $context = array_intersect_key($context, $_parent) + $_parent;
+                    // line 31
+                    echo " 
+\t\t\t\t\t";
+                    // line 32
+                    echo twig_escape_filter($this->env, $context["resultat"], "html", null, true);
+                    echo "<br>
+
+\t\t\t\t\t";
+                }
+                // line 35
+                echo "\t\t\t\t\t
+
+\t\t\t\t";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['keys'], $context['value'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 38
+            echo "\t\t\t";
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['levels'], $context['_parent'], $context['loop']);
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['resultat'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 27
-        echo "\t\t\t
-\t\t</p>
+        // line 39
+        echo "\t\t</p>
+\t</p>
+\t<p></p>
 
-<p>
 
-</p>
-
-\t\t
-\t</div>
-";
+</div>";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -131,7 +164,7 @@ class __TwigTemplate_12cf250b8100d47b798dba438346774823426c979dd44df926e52eb1f87
 
     public function getDebugInfo()
     {
-        return array (  107 => 27,  99 => 25,  96 => 24,  92 => 23,  74 => 7,  67 => 6,  53 => 3,  36 => 1,);
+        return array (  144 => 39,  138 => 38,  130 => 35,  124 => 32,  121 => 31,  114 => 30,  109 => 29,  107 => 28,  104 => 27,  100 => 26,  97 => 25,  93 => 24,  74 => 7,  67 => 6,  53 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -158,20 +191,28 @@ class __TwigTemplate_12cf250b8100d47b798dba438346774823426c979dd44df926e52eb1f87
 \t<div class=\"example-wrapper\">
 
 \t\t<h1>Fonction récursive</h1>
-\t\t<p>{% for levels in level %}
-            
-            {{levels}}
-        {% endfor %}
-\t\t\t
+\t\t<p>
+\t\t\t{% for resultat in result %}
+
+\t\t\t\t{% for keys,value in level %}
+
+\t\t\t\t\t{% if resultat == keys %}
+\t\t\t\t\t{% for i in 0.. value %}
+\t\t\t\t\t&nbsp;\t&nbsp;\t
+\t\t\t\t\t{% endfor %} 
+\t\t\t\t\t{{resultat}}<br>
+
+\t\t\t\t\t{% endif %}
+\t\t\t\t\t
+
+\t\t\t\t{% endfor %}
+\t\t\t{% endfor %}
 \t\t</p>
+\t</p>
+\t<p></p>
 
-<p>
 
-</p>
-
-\t\t
-\t</div>
-{% endblock %}
+</div>{% endblock %}
 ", "team/recursive.html.twig", "C:\\laragon\\www\\tp-Symfony\\Api-symfony\\templates\\team\\recursive.html.twig");
     }
 }

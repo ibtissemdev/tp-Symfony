@@ -117,7 +117,7 @@ class TeamController extends AbstractController
         // var_dump($t);
 
 
-        function hierarchie($t, $element, $croll, &$level)
+        function hierarchie($t, $elt, $croll, &$level)
 
         {
             if ($t[$croll] == null) {
@@ -125,19 +125,20 @@ class TeamController extends AbstractController
                 return 0;
             }
 
-            if (!isset($level[$element])) {
-                $level[$element] = 1;
+            if (!isset($level[$elt])) {
+                $level[$elt] = 1;
             } else {
-                $level[$element]++;
+                $level[$elt]++;
+                // error_log(print_r($level,1));
             }
-            hierarchie($t, $element, $t[$croll], $level);
+            hierarchie($t, $elt, $t[$croll], $level);
         }
         $level = [];
 
-        foreach ($t as $id => $data) {
+        foreach ($t as $key => $data) {
 
-            hierarchie($t, $id, $id, $level);
-            var_dump($level);
+            hierarchie($t, $key, $key, $level);
+        //   error_log(print_r($level,1));
         }
 
         $keys = array_keys($t);
@@ -150,7 +151,7 @@ class TeamController extends AbstractController
         {
             //error_log("prf :" . $prf . " order : " . print_r($order, 1));
             if ($prf == 0) {
-                error_log("--------------");
+                // error_log("--------------");
                 return;
             }
 
@@ -158,7 +159,7 @@ class TeamController extends AbstractController
 
                 if ($level[$leaf] == $prf) {
                     $order[] = [$leaf];
-                    error_log("ok");
+                    // error_log("ok");
                 }
             }
 
@@ -167,17 +168,17 @@ class TeamController extends AbstractController
                 array_unshift($chaine, $t[$chaine[0]]);
                 $order[$id] = $chaine;
                 // error_log($order, $t[$order]);
-                // error_log(print_r(array_unshift($order, $t[$order[0]], 1)));
+                // error_log(print_r(array_unshift($chaine, $t[$chaine[0]]),1));
             }
-
+            error_log(print_r($order,1));
             order($t, $leaves, $prf - 1, $level, $order);
         }
         $order = [];
         order($t, $leaves, max($level), $level, $order);
-        var_dump($level);
+        // var_dump($level);
 
 
-        error_log("order : " . print_r($order, 1));
+        // error_log("order : " . print_r($order, 1));
 
         $result = [];
         foreach ($order as $ordre) {
@@ -187,10 +188,29 @@ class TeamController extends AbstractController
 
         $result = array_values(array_unique($result));
 
-        error_log(print_r($result, 1));
+        // error_log(print_r($result, 1));
+
+        // var_dump($ordre);
+var_dump($level);
+ $valeur=[];
+$key=[];
+        foreach ($level as $key=>$value) {
+            //  $level['value']=$value;
+            //  $level['key']=$value;
+            // var_dump($key);
+            $valeur[]=$value;
+            $keys[]=$key;
+           
+        // }
+         var_dump($keys);
+         var_dump($valeur);
+        // var_dump($element); 
 
         return $this->render('team/recursive.html.twig', [
-            'level' => $result,
+            'result' => $result,
+             'element' => $element,
+            'level' => $level 
+            
         ]);
     }
-}
+}}
