@@ -187,62 +187,85 @@ class __TwigTemplate_c62f1a1965f83f08257dd7f6e7f58df6ebf4ce50f02bd7aeaf5bd7c1825
 \t\t<h2>Organigramme de l'équipe ordonnée</h2>
 
 \t\t<p>
+
 \t\t\t";
-        // line 52
+        // line 53
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["result"]) || array_key_exists("result", $context) ? $context["result"] : (function () { throw new RuntimeError('Variable "result" does not exist.', 52, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["result"]) || array_key_exists("result", $context) ? $context["result"] : (function () { throw new RuntimeError('Variable "result" does not exist.', 53, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["resultat"]) {
-            // line 53
-            echo "
-\t\t\t\t";
             // line 54
+            echo "\t\t\t\t";
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["level"]) || array_key_exists("level", $context) ? $context["level"] : (function () { throw new RuntimeError('Variable "level" does not exist.', 54, $this->source); })()));
-            foreach ($context['_seq'] as $context["keys"] => $context["value"]) {
+            $context['_seq'] = twig_ensure_traversable((isset($context["users"]) || array_key_exists("users", $context) ? $context["users"] : (function () { throw new RuntimeError('Variable "users" does not exist.', 54, $this->source); })()));
+            foreach ($context['_seq'] as $context["_key"] => $context["user"]) {
                 // line 55
                 echo "
 \t\t\t\t\t";
                 // line 56
-                if ((0 === twig_compare($context["resultat"], $context["keys"]))) {
+                $context['_parent'] = $context;
+                $context['_seq'] = twig_ensure_traversable((isset($context["level"]) || array_key_exists("level", $context) ? $context["level"] : (function () { throw new RuntimeError('Variable "level" does not exist.', 56, $this->source); })()));
+                foreach ($context['_seq'] as $context["keys"] => $context["value"]) {
                     // line 57
-                    echo "\t\t\t\t\t\t";
-                    $context['_parent'] = $context;
-                    $context['_seq'] = twig_ensure_traversable(range(0, $context["value"]));
-                    foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                        // line 58
-                        echo "\t\t\t\t\t\t\t&nbsp;\t&nbsp;
+                    echo "
 \t\t\t\t\t\t";
-                    }
-                    $_parent = $context['_parent'];
-                    unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
-                    $context = array_intersect_key($context, $_parent) + $_parent;
-                    // line 60
-                    echo "\t\t\t\t\t\t";
-                    echo twig_escape_filter($this->env, $context["resultat"], "html", null, true);
-                    echo "<br>
+                    // line 58
+                    if ((0 === twig_compare($context["resultat"], $context["keys"]))) {
+                        // line 59
+                        echo "
+\t\t\t\t\t\t\t";
+                        // line 60
+                        if ((0 === twig_compare(twig_get_attribute($this->env, $this->source, $context["user"], "key", [], "any", false, false, false, 60), $context["resultat"]))) {
+                            // line 61
+                            echo "\t\t\t\t\t\t\t\t";
+                            $context['_parent'] = $context;
+                            $context['_seq'] = twig_ensure_traversable(range(0, $context["value"]));
+                            foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
+                                // line 62
+                                echo "\t\t\t\t\t\t\t\t\t&nbsp;\t&nbsp;
+\t\t\t\t\t\t\t\t";
+                            }
+                            $_parent = $context['_parent'];
+                            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
+                            $context = array_intersect_key($context, $_parent) + $_parent;
+                            // line 64
+                            echo "\t\t\t\t\t\t\t\t<a href=\"/team/membreTeam/";
+                            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 64), "html", null, true);
+                            echo "\">";
+                            echo twig_escape_filter($this->env, $context["resultat"], "html", null, true);
+                            echo "</a> (";
+                            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "label", [], "any", false, false, false, 64), "html", null, true);
+                            echo ")
+\t\t\t\t\t\t
+\t\t\t\t\t\t\t\t<br>
 
+\t\t\t\t\t\t\t";
+                        }
+                        // line 69
+                        echo "\t\t\t\t\t\t";
+                    }
+                    // line 70
+                    echo "
 \t\t\t\t\t";
                 }
-                // line 63
-                echo "
-
-\t\t\t\t";
+                $_parent = $context['_parent'];
+                unset($context['_seq'], $context['_iterated'], $context['keys'], $context['value'], $context['_parent'], $context['loop']);
+                $context = array_intersect_key($context, $_parent) + $_parent;
+                // line 72
+                echo "\t\t\t\t";
             }
             $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['keys'], $context['value'], $context['_parent'], $context['loop']);
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['user'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 66
+            // line 73
             echo "\t\t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['resultat'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 67
+        // line 74
         echo "\t\t</p>
-
-
-\t</div>
-";
+\t</p>
+</div>";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -260,7 +283,7 @@ class __TwigTemplate_c62f1a1965f83f08257dd7f6e7f58df6ebf4ce50f02bd7aeaf5bd7c1825
 
     public function getDebugInfo()
     {
-        return array (  241 => 67,  235 => 66,  227 => 63,  220 => 60,  213 => 58,  208 => 57,  206 => 56,  203 => 55,  199 => 54,  196 => 53,  192 => 52,  185 => 47,  178 => 45,  164 => 44,  157 => 40,  153 => 39,  149 => 38,  145 => 37,  142 => 36,  135 => 34,  130 => 33,  128 => 32,  126 => 31,  123 => 30,  120 => 29,  118 => 28,  101 => 27,  98 => 26,  94 => 25,  74 => 7,  67 => 6,  53 => 3,  36 => 1,);
+        return array (  266 => 74,  260 => 73,  254 => 72,  247 => 70,  244 => 69,  231 => 64,  224 => 62,  219 => 61,  217 => 60,  214 => 59,  212 => 58,  209 => 57,  205 => 56,  202 => 55,  197 => 54,  193 => 53,  185 => 47,  178 => 45,  164 => 44,  157 => 40,  153 => 39,  149 => 38,  145 => 37,  142 => 36,  135 => 34,  130 => 33,  128 => 32,  126 => 31,  123 => 30,  120 => 29,  118 => 28,  101 => 27,  98 => 26,  94 => 25,  74 => 7,  67 => 6,  53 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -316,26 +339,31 @@ class __TwigTemplate_c62f1a1965f83f08257dd7f6e7f58df6ebf4ce50f02bd7aeaf5bd7c1825
 \t\t<h2>Organigramme de l'équipe ordonnée</h2>
 
 \t\t<p>
+
 \t\t\t{% for resultat in result %}
+\t\t\t\t{% for user in users %}
 
-\t\t\t\t{% for keys,value in level %}
+\t\t\t\t\t{% for keys,value in level %}
 
-\t\t\t\t\t{% if resultat == keys %}
-\t\t\t\t\t\t{% for i in 0.. value %}
-\t\t\t\t\t\t\t&nbsp;\t&nbsp;
-\t\t\t\t\t\t{% endfor %}
-\t\t\t\t\t\t{{resultat}}<br>
+\t\t\t\t\t\t{% if resultat == keys %}
 
-\t\t\t\t\t{% endif %}
+\t\t\t\t\t\t\t{% if user.key == resultat %}
+\t\t\t\t\t\t\t\t{% for i in 0.. value %}
+\t\t\t\t\t\t\t\t\t&nbsp;\t&nbsp;
+\t\t\t\t\t\t\t\t{% endfor %}
+\t\t\t\t\t\t\t\t<a href=\"/team/membreTeam/{{user.id}}\">{{resultat}}</a> ({{user.label}})
+\t\t\t\t\t\t
+\t\t\t\t\t\t\t\t<br>
 
+\t\t\t\t\t\t\t{% endif %}
+\t\t\t\t\t\t{% endif %}
 
+\t\t\t\t\t{% endfor %}
 \t\t\t\t{% endfor %}
 \t\t\t{% endfor %}
 \t\t</p>
-
-
-\t</div>
-{% endblock %}
+\t</p>
+</div>{% endblock %}
 ", "team/organigramme.html.twig", "C:\\laragon\\www\\tp-Symfony\\Api-symfony\\templates\\team\\organigramme.html.twig");
     }
 }

@@ -49,23 +49,28 @@
 		<h2>Organigramme de l'équipe ordonnée</h2>
 
 		<p>
+
 			{% for resultat in result %}
+				{% for user in users %}
 
-				{% for keys,value in level %}
+					{% for keys,value in level %}
 
-					{% if resultat == keys %}
-						{% for i in 0.. value %}
-							&nbsp;	&nbsp;
-						{% endfor %}
-						{{resultat}}<br>
+						{% if resultat == keys %}
 
-					{% endif %}
+							{% if user.key == resultat %}
+								{% for i in 0.. value %}
+									&nbsp;	&nbsp;
+								{% endfor %}
+								<a href="/team/membreTeam/{{user.id}}">{{resultat}}</a> ({{user.label}})
+						
+								<br>
 
+							{% endif %}
+						{% endif %}
 
+					{% endfor %}
 				{% endfor %}
 			{% endfor %}
 		</p>
-
-
-	</div>
-{% endblock %}
+	</p>
+</div>{% endblock %}
