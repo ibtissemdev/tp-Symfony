@@ -88,7 +88,12 @@ class __TwigTemplate_b4319f28e4e61ecc88ab983a77291f90850aee9e0aa33a94dc56085361a
 
 \t\t<h1>Fiche membre de l'équipe</h1>
 
-
+<img src=\"/images/";
+        // line 24
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 24, $this->source); })()), "photo", [], "any", false, false, false, 24), "html", null, true);
+        echo "\" alt=\"";
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 24, $this->source); })()), "photo", [], "any", false, false, false, 24), "html", null, true);
+        echo "\" width=\"200px\">
 
 <p> Nom Prénom : ";
         // line 26
@@ -117,14 +122,10 @@ class __TwigTemplate_b4319f28e4e61ecc88ab983a77291f90850aee9e0aa33a94dc56085361a
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 31, $this->source); })()), "adresse", [], "any", false, false, false, 31), "html", null, true);
         echo "<br></p>
 
+<button type=\"button\"><a href=\"/team/organigramme\"> Retour<a/> </button>
 
 
 
-\t\t<p>
-
-\t\t\t
-\t\t</p>
-\t</p>
 </div>";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -143,7 +144,7 @@ class __TwigTemplate_b4319f28e4e61ecc88ab983a77291f90850aee9e0aa33a94dc56085361a
 
     public function getDebugInfo()
     {
-        return array (  117 => 31,  113 => 30,  109 => 29,  105 => 28,  101 => 27,  95 => 26,  74 => 7,  67 => 6,  53 => 3,  36 => 1,);
+        return array (  122 => 31,  118 => 30,  114 => 29,  110 => 28,  106 => 27,  100 => 26,  93 => 24,  74 => 7,  67 => 6,  53 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -171,7 +172,7 @@ class __TwigTemplate_b4319f28e4e61ecc88ab983a77291f90850aee9e0aa33a94dc56085361a
 
 \t\t<h1>Fiche membre de l'équipe</h1>
 
-
+<img src=\"/images/{{user.photo}}\" alt=\"{{user.photo}}\" width=\"200px\">
 
 <p> Nom Prénom : {{user.firstname}} {{user.lastname}} <br></p>
 <p> Profession :{{user.label}} <br> </p>
@@ -180,14 +181,10 @@ class __TwigTemplate_b4319f28e4e61ecc88ab983a77291f90850aee9e0aa33a94dc56085361a
 <p> Mail :    {{user.mail}}<br></p>
 <p> Adresse :   {{user.adresse}}<br></p>
 
+<button type=\"button\"><a href=\"/team/organigramme\"> Retour<a/> </button>
 
 
 
-\t\t<p>
-
-\t\t\t
-\t\t</p>
-\t</p>
 </div>{% endblock %}
 ", "team/membre.html.twig", "C:\\laragon\\www\\tp-Symfony\\Api-symfony\\templates\\team\\membre.html.twig");
     }

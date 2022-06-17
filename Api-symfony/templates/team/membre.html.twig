@@ -21,7 +21,7 @@
 
 		<h1>Fiche membre de l'équipe</h1>
 
-
+<img src="/images/{{user.photo}}" alt="{{user.photo}}" width="200px">
 
 <p> Nom Prénom : {{user.firstname}} {{user.lastname}} <br></p>
 <p> Profession :{{user.label}} <br> </p>
@@ -30,12 +30,8 @@
 <p> Mail :    {{user.mail}}<br></p>
 <p> Adresse :   {{user.adresse}}<br></p>
 
+<button type="button"><a href="/team/organigramme"> Retour<a/> </button>
 
 
 
-		<p>
-
-			
-		</p>
-	</p>
 </div>{% endblock %}
